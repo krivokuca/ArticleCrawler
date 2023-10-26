@@ -1,0 +1,149 @@
+{
+  "Name": "Article Crawler Config File",
+  "Version": "1.0.0",
+  "Variables": {
+    "{STOCK_TICKER}": "The stocks Ticker",
+    "{STOCK_NAME}": "The full name of the company behind the stock ticker",
+    "{START_RANGE}": "The starting date range, in seconds",
+    "{PAGE_NUMBER}": "The search page number"
+  },
+  "StatisticsKeys": "LastUpdate",
+  "HeadlineKeys": [
+    "link",
+    "headline",
+    "summary",
+    "date",
+    "language"
+  ],
+  "HasLanguageKeys": [
+    "PRS"
+  ],
+  "Sources": [
+    {
+      "Name": "Google News Headlines",
+      "Shortcode": "GNH",
+      "BaseEndpoint": "https://news.google.com/",
+      "HeadlineEndpoint": "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={API_KEY_HERE}",
+      "EndpointType": "JSON",
+      "IteratorKey": "articles",
+      "KeyVals": [
+        "url",
+        "title",
+        "description",
+        "publishedAt"
+      ],
+      "Language": "en-US"
+    },
+    {
+      "Name": "Google News",
+      "Shortcode": "GNW",
+      "BaseEndpoint": "https://news.google.com/",
+      "HeadlineEndpoint": "http://newsapi.org/v2/everything?q={STOCK_TICKER}&sortBy=publishedAt&language=en&apiKey={API_KEY_HERE}",
+      "EndpointType": "JSON",
+      "IteratorKey": "articles",
+      "KeyVals": [
+        "url",
+        "title",
+        "description",
+        "publishedAt"
+      ],
+      "Language": "en-US"
+    },
+    {
+      "Name": "Google News XML",
+      "Shortcode": "GNX",
+      "BaseEndpoint": "https://news.google.com/",
+      "HeadlineEndpoint": "https://news.google.com/rss/search?q={STOCK_TICKER}&hl=en-CA&gl=CA&ceid=CA:en",
+      "EndpointType": "XML",
+      "IteratorKey": "item",
+      "KeyVals": [
+        "link",
+        "title",
+        "description",
+        "pubDate"
+      ],
+      "Language": "en-US"
+    },
+    {
+      "Name": "Yahoo Finance",
+      "Shortcode": "YAH",
+      "BaseEndpoint": "https://finance.yahoo.com/",
+      "HeadlineEndpoint": "https://news-headlines.tradingview.com/headlines/yahoo/?category=stock&locale=en&proSymbol={STOCK_TICKER}",
+      "EndpointType": "JSON",
+      "IteratorKey": null,
+      "KeyVals": [
+        "link",
+        "title",
+        "shortDescription",
+        "published"
+      ],
+      "Language": "en-US"
+    },
+    {
+      "Name": "Seeking Alpha Headlines",
+      "Shortcode": "SAH",
+      "BaseEndpoint": "https://seekingalpha.com/",
+      "HeadlineEndpoint": "https://seekingalpha.com/listing/most-popular-articles.xml",
+      "EndpointType": "XML",
+      "IteratorKey": null,
+      "KeyVals": null,
+      "Language": "en-US"
+    },
+    {
+      "Name": "Seeking Alpha Latest Headlines",
+      "Shortcode": "SLT",
+      "BaseEndpoint": "https://seekingalpha.com/",
+      "HeadlineEndpoint": "https://seekingalpha.com/feed.xml",
+      "EndpointType": "XML",
+      "IteratorKey": null,
+      "KeyVals": null,
+      "Language": "en-US"
+    },
+    {
+      "Name": "Seeking Alpha",
+      "Shortcode": "SAL",
+      "BaseEndpoint": "https://seekingalpha.com/",
+      "HeadlineEndpoint": "https://seekingalpha.com/api/sa/combined/{STOCK_TICKER}.xml",
+      "EndpointType": "XML",
+      "IteratorKey": null,
+      "KeyVals": null,
+      "Language": "en-US"
+    },
+    {
+      "Name": "PR NewsWire Latest Headlines",
+      "Shortcode": "PRS",
+      "BaseEndpoint": "https://www.prnewswire.com/rss/",
+      "HeadlineEndpoint": "https://www.prnewswire.com/rss/news-releases-list.rss",
+      "EndpointType": "XML",
+      "IteratorKey": "item",
+      "KeyVals": [
+        "link",
+        "title",
+        "description",
+        "pubDate",
+        "{http://purl.org/dc/elements/1.1/}language"
+      ],
+      "Language": "en-US"
+    },
+    {
+      "Name": "AP Business News Headlines",
+      "Shortcode": "ABN",
+      "BaseEndpoint": "https://storage.googleapis.com/afs-prod/feeds/",
+      "HeadlineEndpoint": "https://storage.googleapis.com/afs-prod/feeds/business.json.gz",
+      "EndpointType": "JSON",
+      "IteratorKey": "cards",
+      "KeyVals": [],
+      "Language": "en-US"
+    },
+    {
+      "Name": "Business Insider Markets Headlines",
+      "Shortcode": "BIH",
+      "BaseEndpoint": "https://markets.businessinsider.com",
+      "HeadlineEndpoint": "https://markets.businessinsider.com/news",
+      "EndpointType": "HTML",
+      "IteratorKey": false,
+      "KeyVals": [],
+      "Language": "en-US"
+    }
+  ]
+}
